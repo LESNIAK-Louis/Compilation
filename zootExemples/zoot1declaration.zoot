@@ -1,0 +1,7 @@
+variables
+    booleen a;
+    entier b;
+debut
+    ecrire a;
+    ecrire b;
+fin

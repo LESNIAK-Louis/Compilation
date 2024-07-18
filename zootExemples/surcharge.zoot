@@ -1,0 +1,21 @@
+// Doit afficher
+// 12
+// 13
+
+variables
+    entier e;
+fonctions
+    entier k()
+    variables
+    debut
+        retourne 12;
+    fin
+    entier k(entier e;)
+    variables
+    debut
+        retourne e;
+    fin
+debut
+    ecrire k();
+    ecrire k(13);
+fin

@@ -1,0 +1,36 @@
+// Doit afficher :
+// 1
+// 2
+// 3
+// 4
+// faux
+// 5
+
+variables
+    entier e;
+    entier g;
+fonctions
+    booleen test(entier e; booleen b;)
+    variables
+        entier j;
+    debut
+        j = 2;
+        ecrire e;
+        ecrire j;
+        ecrire f();
+        retourne b;
+    fin
+    entier f()
+    variables
+        entier c;
+    debut
+        ecrire 3;
+        retourne 4;
+    fin
+debut
+    g = 5;
+    e = 1;
+    ecrire test(e, faux);
+    ecrire g;
+
+fin

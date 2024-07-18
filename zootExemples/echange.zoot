@@ -1,0 +1,31 @@
+// Doit afficher :
+// vrai
+// 10
+// 5
+variables 
+    entier a;
+    entier b;
+    entier tmp;
+fonctions
+    booleen saveA ()
+    debut
+        tmp = a;
+        retourne ecrireBDansA();
+    fin
+    booleen ecrireBDansA ()
+    debut
+        a = b;
+        retourne ecrireB();
+    fin
+    booleen ecrireB ()
+    debut
+        b = tmp;
+        retourne vrai;
+    fin
+debut
+    a = 5;
+    b = 10;
+    ecrire saveA();
+    ecrire a;
+    ecrire b;
+fin

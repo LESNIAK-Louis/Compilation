@@ -1,0 +1,108 @@
+.data
+vrai:	.asciiz "vrai"
+faux:	.asciiz "faux"
+.text
+main:
+move $s3,$sp
+addi $sp,$sp,-12
+# initialiser s7 avec sp (initialisation de la base des variables)
+move $s7,$sp
+# reservation de l'espace pour les variables
+addi $sp, $sp, -12
+
+
+li $v0, 5
+sw $v0, -12($s3)
+li $v0, 10
+sw $v0, -16($s3)
+addi $sp, $sp, -4 # Réserver la place pour le résultat de la fonction
+jal etif1 # Appel à la fonction
+lw $v0, 0($sp) # Sauvegarde du résultat dans v0
+si0:
+bnez $v0, sinon0
+alors0:
+la $a0, faux
+b finsi0
+sinon0:
+la $a0, vrai
+finsi0:
+li $v0, 4
+syscall
+addi $a0, $0, 0xA
+addi $v0, $0, 0xB
+syscall
+lw $v0, -12($s3)
+move $a0, $v0
+li $v0, 1
+syscall
+addi $a0, $0, 0xA
+addi $v0, $0, 0xB
+syscall
+lw $v0, -16($s3)
+move $a0, $v0
+li $v0, 1
+syscall
+addi $a0, $0, 0xA
+addi $v0, $0, 0xB
+syscall
+
+end:
+# fin du programme
+li $v0, 10      # retour au systeme
+syscall
+
+etif1:
+sw $ra, 0($sp) #sauvegarde de l'adresse de retour
+sw $s7, -4($sp) #sauvegarde du chainage dynamique
+addi $sp, $sp, -8 #mise à jour du sommet de pile
+move $s7, $sp #mise à jour de la base locale
+addi $sp, $sp, -4 #mise à jour du sommet de pile
+#instructions de la fonction
+lw $v0, -12($s3)
+sw $v0, -20($s3)
+#fin de la fonction
+addi $sp, $sp, -4 # Réserver la place pour le résultat de la fonction
+jal etif2 # Appel à la fonction
+lw $v0, 0($sp) # Sauvegarde du résultat dans v0
+sw $v0, 12($s7) #sauvegarde du résultat dans l'espace réservé
+addi $sp, $s7, 12 #restauration du sommet de pile
+lw $s7, 4($s7) #restauration de la base
+lw $ra, -4($sp) #chargement de l'adresse de retour
+jr $ra #branchement à l'adresse de retour
+
+etif2:
+sw $ra, 0($sp) #sauvegarde de l'adresse de retour
+sw $s7, -4($sp) #sauvegarde du chainage dynamique
+addi $sp, $sp, -8 #mise à jour du sommet de pile
+move $s7, $sp #mise à jour de la base locale
+addi $sp, $sp, -4 #mise à jour du sommet de pile
+#instructions de la fonction
+lw $v0, -16($s3)
+sw $v0, -12($s3)
+#fin de la fonction
+addi $sp, $sp, -4 # Réserver la place pour le résultat de la fonction
+jal etif3 # Appel à la fonction
+lw $v0, 0($sp) # Sauvegarde du résultat dans v0
+sw $v0, 12($s7) #sauvegarde du résultat dans l'espace réservé
+addi $sp, $s7, 12 #restauration du sommet de pile
+lw $s7, 4($s7) #restauration de la base
+lw $ra, -4($sp) #chargement de l'adresse de retour
+jr $ra #branchement à l'adresse de retour
+
+etif3:
+sw $ra, 0($sp) #sauvegarde de l'adresse de retour
+sw $s7, -4($sp) #sauvegarde du chainage dynamique
+addi $sp, $sp, -8 #mise à jour du sommet de pile
+move $s7, $sp #mise à jour de la base locale
+addi $sp, $sp, -4 #mise à jour du sommet de pile
+#instructions de la fonction
+lw $v0, -20($s3)
+sw $v0, -16($s3)
+#fin de la fonction
+li $v0, 1
+sw $v0, 12($s7) #sauvegarde du résultat dans l'espace réservé
+addi $sp, $s7, 12 #restauration du sommet de pile
+lw $s7, 4($s7) #restauration de la base
+lw $ra, -4($sp) #chargement de l'adresse de retour
+jr $ra #branchement à l'adresse de retour
+

@@ -1,0 +1,41 @@
+// Doit afficher
+// 10
+// 30
+// 6
+// 666
+// 555
+
+variables
+    entier k;
+    entier d;
+    entier p;
+fonctions
+    entier e()
+    variables
+        entier d;
+        entier x;
+    debut
+        d = 6;
+        x = 30;
+        ecrire x;
+        p = 555;
+        retourne d;
+    fin
+    entier f()
+    variables
+        entier j;
+        entier d;
+    debut
+        j = 10;
+        ecrire 10;
+        d = 2;
+        retourne d;
+    fin
+debut
+    d = 666;
+    k = f();
+    k = e();
+    ecrire k;
+    ecrire d;
+    ecrire p;
+fin

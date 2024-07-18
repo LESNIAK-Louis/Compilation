@@ -1,0 +1,17 @@
+variables
+    entier d;
+    entier a;
+    booleen e;
+    booleen c;
+    entier b;
+debut
+    b = 3;
+    ecrire b;
+    d = 6;
+    ecrire d;
+    a = 2;
+    c = vrai;
+    a = b;
+    ecrire vrai;
+    ecrire c;
+fin
